@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Facebook - log in or sign up</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left">
+            <div class="logo">
+                <img class="logo" src="./assets/logo.svg" alt="" width="300">
+            </div>
+            <div class="para">Facebook helps you connect and share with the people in your life.</div>
+        </div>
+        <div class="right">
+            <div class="login">
+                <form action="/users/login" method="post">
+                    <input type="text" placeholder="Email address or phone number" name="username"> <br>
+                    <input type="password" name="password" placeholder="Password" name="password"> <br>
+                    <input type="submit" value="Log In" class="login-btn">
+                </form>
+                <a href="#" class="forgot">Forgotten password?</a>
+                <div class="line"></div>
+                <button class="create-btn" onclick="signupShow()">Create a new account</button>
+            </div>
+            <p class="page"><b>Create a Page </b>for a celebrity, brand or business.</p>
+        </div>
+    </div>
+
+    <div class="signup" id="signup">
+        <div class="top">
+            <div>
+                <h1>Sign Up</h1>
+                <p>It's quick and easy</p>
+            </div>
+            <svg onclick="signupClose()" class="close-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+            </svg>
+        </div>
+        <div class="signup__line"></div>
+        <form action="/users/signup" method="post">
+            <div class="signup__names">
+                <input class="signup__name" type="text" name="firstname" placeholder="First Name">
+                <input class="signup__name" type="text" name="lastname" placeholder="Surname">
+            </div>
+            <input type="text" placeholder="Mobile number or email address" name="username">
+            <input type="password" placeholder="New password" name="password">
+            <p class="signup__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil culpa dignissimos et
+                obcaecati quae eum ab magnam </p>
+            <input type="submit" value="Sign Up" class="signup__submit">
+        </form>
+    </div>
+   
+    <div class="popup" id="popup">
+        <h3>This is <span>not</span> real Facebook</h3>
+        <p class="popup__para">Do not enter your Facebook credentials. You don't have to give your personal information(like email) to signup for this app.</p>
+        <p>
+        Developed by <a target="_blank" href="https://www.github.com/temalcode">@temalcode</a>
+        </p>
+        <button onclick="hidePopup()">Ok</button>
+    </div>      
+
+    <script>
+
+        const signup = document.getElementById('signup')
+        function signupShow() {
+            signup.style.display = 'block'
+        }
+
+        function signupClose() {
+            signup.style.display = 'none'
+        }
+
+
+        const popup = document.getElementById('popup')
+        let is_modal_show = sessionStorage.getItem('alreadyShow');
+        if(is_modal_show != 'alredy shown'){
+            popup.style.display = 'flex'
+            sessionStorage.setItem('alreadyShow','alredy shown');
+        }
+        function hidePopup() {
+            popup.style.display = 'none'
+        }
+
+    </script>
+</body>
+
+</html>

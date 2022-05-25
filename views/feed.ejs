@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="feed.css">
+    <title>Facebook</title>
+</head>
+
+<body>
+    <%- include('nav')  %> 
+    <!-- main -->
+    <main>
+        <div class="wrapper">
+            <%- include('main-left')  %> 
+            <div class="main__center">
+                <%- include('create-new-post')  %> 
+
+                <div>
+                    <% posts.forEach((post) => { %> 
+                        <div class="post">
+                            <div class="post__top">
+                                <div class="post__owner">
+                                    <img src=".\assets\blank-profile-picture-g7898add45_1280.png" alt="" width="35px" class="profile-pic">
+                                    <%= post.owner.firstName + " " + post.owner.lastName %>
+                                </div>
+                                <div>
+                                    <form action="/posts/delete/<%= post._id %>?_method=DELETE" method="post">
+                                    <input type="submit" value="Delete"></form>
+                                </div>
+                            </div>
+                            <div class="post__caption">
+                                <div>
+                                    <%= post.caption %> 
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %> 
+                </div>
+            </div>
+            <div class="main__right">
+                <%- include('main-right') %> 
+            </div>
+        </div>
+
+
+
+        <div class="logout" id="logoutDiv">
+            <form action="/users/logout?_method=DELETE" method="post">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
+    </main>
+</body>
+
+<script>
+    const newPost = document.getElementById('newpost')
+    function showNewPost() {
+        newPost.style.display = 'flex'
+    }
+
+    function hideNewPost() {
+        newPost.style.display = 'none'
+    }
+
+    const logoutDiv = document.getElementById('logoutDiv')
+    function logout(){
+        logoutDiv.classList.toggle('show-logout')
+    }
+</script>
+
+</html>
